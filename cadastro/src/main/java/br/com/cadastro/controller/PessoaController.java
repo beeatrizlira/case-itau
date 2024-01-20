@@ -1,9 +1,12 @@
 package br.com.cadastro.controller;
 
 import br.com.cadastro.model.Pessoa;
+import br.com.cadastro.model.dto.PessoaDTO;
 import br.com.cadastro.service.PessoaService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,4 +27,8 @@ public class PessoaController {
         return ResponseEntity.ok(this.pessoaService.findAll());
     }
 
+    @PostMapping(consumes = "application/json", produces = "application/json")
+    public void create(@RequestBody PessoaDTO request) {
+        pessoaService.create(request);
+    }
 }
