@@ -1,0 +1,78 @@
+mat-card {
+  margin: 2em auto;
+  padding-bottom: 2rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  width: 50%;
+
+  mat-toolbar {
+    justify-content: center;
+    border-radius: 4px 4px 0 0;
+  }
+
+  mat-card-content {
+    margin-top: 1rem;
+    width: 100%;
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      justify-content: center;
+      align-items: center;
+
+      input {
+        &:disabled {
+          background-color: transparent;
+        }
+      }
+    }
+  }
+
+  mat-card-actions {
+    display: flex;
+    gap: 0.5rem;
+
+    button {
+      padding: 1.5rem 2rem;
+      color: white;
+      font-weight: 600;
+    }
+  }
+}
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: transparent !important;
+}
+mat-form-field {
+  width: 60%;
+}
+
+.full-width {
+  width: 100%;
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading {
+  position: relative;
+}
+.loading:before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin-top: -10px;
+  margin-left: -10px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  border-top-color: #000000;
+  animation: spinner 0.8s linear infinite;
+}

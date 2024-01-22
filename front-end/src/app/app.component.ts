@@ -1,26 +1,13 @@
-import {Component, OnInit} from '@angular/core';
-import {IDadosPessoas, PessoasService} from './services/pessoas.service';
+
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
+  constructor() {}
 
-  pessoas: IDadosPessoas[] = [];
-
-  constructor(private readonly pessoaService: PessoasService) {
-
-  }
-
-  ngOnInit(): void {
-    this.pessoaService
-      .get()
-      .subscribe({
-        next: (dadosPessoas: IDadosPessoas[]) => {
-          this.pessoas = dadosPessoas;
-        }
-      })
-  }
+  ngOnInit(): void {}
 }

@@ -1,7 +1,6 @@
-<div>
-  <ul>
-    <li *ngFor="let pessoa of pessoas">
-      {{pessoa.nome}} - {{pessoa.cpf}}
-    </li>
-  </ul>
+<mat-toolbar color="primary" class="toolbar">
+  <span>CASE - ITAU</span>
+</mat-toolbar>
+<div class="page-width">
+  <router-outlet></router-outlet>
 </div>
