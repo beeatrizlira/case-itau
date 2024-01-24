@@ -1,10 +1,51 @@
-.toolbar {
-  margin-bottom: 1rem;
-  color: white;
+mat-toolbar {
+  font-family: "Open Sans", sans-serif;
+  margin: 0 auto;
+  padding: 2.5rem 0;
+
+  .toolbar-content {
+    align-items: center;
+    display: flex;
+    gap: 3rem;
+    margin-left: auto;
+    max-width: 1280px;
+    width: 100%;
+  }
+
+  .nav {
+    ul {
+      display: flex;
+      gap: 1rem;
+      list-style: none;
+
+      li {
+        position: relative;
+        a {
+          color: white;
+          font-weight: 500;
+          position: relative;
+          text-decoration: none;
+
+          &:hover {
+            &::after {
+              content: "";
+              background-color: white;
+              display: block;
+              height: 4px;
+              position: absolute;
+              top: 47px;
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
-.page-width {
-  max-width: 1280px;
-  padding: 1rem;
-  margin: 0 auto;
+footer {
+  background-color: #4c4c4c;
+  width: 100%;
+  padding: 3rem;
+  margin-top: auto;
 }

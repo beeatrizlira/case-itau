@@ -1,31 +1,53 @@
 package br.com.cadastro.model.dto;
 
+import java.time.LocalDate;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Length;
+import org.springframework.lang.Nullable;
+
 public class PessoaDTO {
+    @NotBlank
+    @NotNull
+    @Length(max = 200, min = 1)
+    private String name;
 
-    private String nome;
+    @NotBlank
+    @NotNull
+    private String gender;
 
-    private String sexo;
-
+    @NotNull
+    @NotBlank
+    @Length(min = 11, max = 11)
     private String cpf;
 
+    @NotNull
+    @NotBlank
+    @Email
+    @Length(max = 200)
     private String email;
 
-    private String celular;
+    private String phone;
+    
+    @NotNull
+    private LocalDate birth;
 
-    public String getNome() {
-        return nome;
+
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getSexo() {
-        return sexo;
+    public String getGender() {
+        return gender;
     }
 
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public String getCpf() {
@@ -44,16 +66,21 @@ public class PessoaDTO {
         this.email = email;
     }
 
-    public String getCelular() {
-        return celular;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setCelular(String celular) {
-        this.celular = celular;
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    @Override
-    public String toString() {
-        return nome + " - " + cpf + " - " + email;
+    public LocalDate getBirth() {
+        return birth;
+    }
+
+    public void setBirth(LocalDate birth) {
+        this.birth = birth;
     }
 }
+    

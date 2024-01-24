@@ -2,10 +2,9 @@
 @import "@angular/material/theming";
 @include mat-core();
 
-$custom-app-primary: mat-palette($mat-amber, 900);
+$custom-app-primary: mat-palette($mat-orange, A700);
 $custom-app-secondary: mat-palette($mat-indigo, A700);
 $custom-app-warn: mat-palette($mat-red);
-
 $custom-theme: mat.define-light-theme(
   (
     color: (
@@ -17,12 +16,3 @@ $custom-theme: mat.define-light-theme(
 );
 
 @include angular-material-theme($custom-theme);
-
-html,
-body {
-  height: 100%;
-}
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-}

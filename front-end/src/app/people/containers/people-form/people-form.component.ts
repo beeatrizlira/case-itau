@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { PeopleService } from '../services/people.service';
+import { PeopleService } from '../../../services/people.service';
 import { Router } from '@angular/router';
-import { Validator } from './validator';
+import { Validator } from '../../utils/validator';
 
 @Component({
   selector: 'app-people-form',
@@ -11,21 +11,21 @@ import { Validator } from './validator';
   styleUrls: ['./people-form.component.scss'],
 })
 export class PeopleFormComponent {
-  validator: Validator = new Validator();
   isSubmitting = false;
+  
   form = this.formBuilder.group({
-    nome: ['', [Validators.required, Validators.maxLength(200)]],
+    name: ['', [Validators.required, Validators.maxLength(200)]],
     email: ['', [Validators.required, Validators.email]],
-    celular: [
+    birth: ['', Validators.required],
+    phone: [
       '',
       [
-        Validators.required,
         Validators.pattern('[0-9 ]{11}'),
         Validators.maxLength(11),
         Validators.minLength(11),
       ],
     ],
-    sexo: ['', Validators.required],
+    gender: ['', Validators.required],
     cpf: [
       '',
       [
@@ -44,26 +44,25 @@ export class PeopleFormComponent {
     private router: Router
   ) {}
 
-  ngOninit(): void {}
-
   onSubmit() {
     this.isSubmitting = true;
-    if (this.form.value) {
-      this.service.save(this.form.value).subscribe({
-        next: this.onSucess.bind(this),
-        error: this.onError.bind(this),
-      });
-    }
+
+    this.service.save(this.form.value).subscribe({
+      next: this.onSucess.bind(this),
+      error: this.onError.bind(this),
+    });
   }
 
   private onError() {
     this.isSubmitting = false;
-    this.snackBar.open('Erro ao salvar usuário', '', { duration: 5000 });
+    this.snackBar.open('Erro ao salvar pessoa', '', { duration: 5000 });
   }
 
   private onSucess() {
     this.isSubmitting = false;
-    this.snackBar.open('Usuário criado com sucesso', '', { duration: 5000 });
+    this.snackBar.open('Pessoa criada com sucesso', '', {
+      duration: 5000,
+    });
     this.router.navigate(['/search']);
   }
 

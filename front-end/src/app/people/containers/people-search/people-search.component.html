@@ -1,0 +1,60 @@
+<mat-card>
+  <form class="frmSearch" [formGroup]="form">
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="Busca por CPF"
+        formControlName="cpf"
+        mask="000.000.000-00"
+      />
+      <mat-error *ngIf="form.get('cpf')?.hasError('invalidCpf')"
+        >CPF inválido</mat-error
+      >
+    </mat-form-field>
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      class="btnSearch"
+      (click)="searchByCpf()"
+      [disabled]="!form.valid"
+    >
+      Buscar
+    </button>
+  </form>
+  <div class="tableContainer">
+    <table mat-table [dataSource]="pessoas">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+      </ng-container>
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Nome</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      </ng-container>
+      <ng-container matColumnDef="cpf">
+        <th mat-header-cell *matHeaderCellDef>CPF</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.cpf | cpf }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="birth">
+        <th mat-header-cell *matHeaderCellDef>Data de nascimento</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.birth | date : "dd/MM/yyyy" }}
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      <tr class="mat-row" *matNoDataRow>
+        <td
+          class="mat-cell"
+          [attr.colspan]="displayedColumns.length"
+          class="emptyTable"
+        >
+          Nenhuma pessoa foi encontrada.
+        </td>
+      </tr>
+    </table>
+  </div>
+</mat-card>

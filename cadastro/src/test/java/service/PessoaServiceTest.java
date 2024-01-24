@@ -1,4 +1,4 @@
-package service;
+package Service;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doThrow;
@@ -17,8 +17,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import br.com.cadastro.model.Pessoa;
 import br.com.cadastro.model.dto.PessoaDTO;
+import br.com.cadastro.repository.PessoaRepository;
 import br.com.cadastro.service.PessoaService;
-import br.com.cadastro.service.repository.PessoaRepository;
 
 @ExtendWith({ SpringExtension.class })
 public class PessoaServiceTest {
@@ -32,10 +32,10 @@ public class PessoaServiceTest {
     public void shouldCreateUserSucess() {
         PessoaDTO pessoa = new PessoaDTO();
         pessoa.setCpf("12345678910");
-        pessoa.setCelular("11111111111");
+        pessoa.setPhone("11111111111");
         pessoa.setEmail("teste@teste.com");
-        pessoa.setNome("Beatriz");
-        pessoa.setSexo("F");
+        pessoa.setName("Beatriz");
+        pessoa.setGender("F");
         when(pessoaRepository.findByCpf(pessoa.getCpf())).thenReturn(null);
         suite.create(pessoa);
         verify(pessoaRepository, times(1)).findByCpf(any());
@@ -50,10 +50,10 @@ public class PessoaServiceTest {
 
         PessoaDTO pessoaDTO = new PessoaDTO();
         pessoaDTO.setCpf("11111111111");
-        pessoaDTO.setCelular("11111111111");
+        pessoaDTO.setPhone("11111111111");
         pessoaDTO.setEmail("teste@teste.com");
-        pessoaDTO.setNome("Beatriz");
-        pessoaDTO.setSexo("F");
+        pessoaDTO.setName("Beatriz");
+        pessoaDTO.setGender("F");
         when(pessoaRepository.findByCpf(pessoa.getCpf())).thenReturn(pessoa);
 
         try {
@@ -67,11 +67,24 @@ public class PessoaServiceTest {
     }
 
     @Test
-    public void shouldFindUserByCpfSucess() {
+    public void shouldFindUserByCpfSuccess() {
+        PessoaDTO pessoa = new PessoaDTO();
+        pessoa.setCpf("12345678910");
+        when(pessoaRepository.findByCpf(pessoa.getCpf())).thenReturn(new Pessoa());
+        suite.findByCpf(pessoa.getCpf());
+        verify(pessoaRepository, times(1)).findByCpf(any());
+    }
+
+    @Test
+    public void shouldFindUserByCpfNotSuccess() {
         PessoaDTO pessoa = new PessoaDTO();
         pessoa.setCpf("12345678910");
         when(pessoaRepository.findByCpf(pessoa.getCpf())).thenReturn(null);
-        suite.findByCpf(pessoa.getCpf());
+        try {
+            suite.findByCpf(pessoa.getCpf());
+        } catch(Exception ex) {
+
+        }
         verify(pessoaRepository, times(1)).findByCpf(any());
     }
 
@@ -88,10 +101,10 @@ public class PessoaServiceTest {
     public void shouldCreateUserError() {
         PessoaDTO pessoa = new PessoaDTO();
         pessoa.setCpf("12345678910");
-        pessoa.setCelular("11111111111");
+        pessoa.setPhone("11111111111");
         pessoa.setEmail("teste@teste.com");
-        pessoa.setNome("Beatriz");
-        pessoa.setSexo("F");
+        pessoa.setName("Beatriz");
+        pessoa.setGender("F");
         when(pessoaRepository.findByCpf(pessoa.getCpf())).thenReturn(null);
         doThrow(RuntimeException.class).when(pessoaRepository).save(any());
         try {

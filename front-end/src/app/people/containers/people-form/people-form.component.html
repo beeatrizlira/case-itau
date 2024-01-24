@@ -3,9 +3,14 @@
   <mat-card-content>
     <form [formGroup]="form" class="full-width">
       <mat-form-field>
-        <input matInput placeholder="Nome*" formControlName="nome" />
-        <mat-error *ngIf="form.get('email')?.invalid">{{
-          getErrorMessage("nome")
+        <input
+          matInput
+          placeholder="Nome*"
+          formControlName="name"
+          data-testid="nome"
+        />
+        <mat-error *ngIf="form.get('name')?.invalid">{{
+          getErrorMessage("name")
         }}</mat-error>
       </mat-form-field>
       <mat-form-field>
@@ -14,13 +19,19 @@
           placeholder="CPF*"
           formControlName="cpf"
           mask="000.000.000-00"
+          data-testid="cpf"
         />
-        <mat-error *ngIf="form.get('email')?.invalid">{{
+        <mat-error *ngIf="form.get('cpf')?.invalid">{{
           getErrorMessage("cpf")
         }}</mat-error>
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="E-mail*" formControlName="email" />
+        <input
+          matInput
+          placeholder="E-mail*"
+          formControlName="email"
+          data-testid="email"
+        />
         <mat-error *ngIf="form.get('email')?.invalid">{{
           getErrorMessage("email")
         }}</mat-error>
@@ -28,24 +39,39 @@
       <mat-form-field>
         <input
           matInput
-          placeholder="Celular*"
-          formControlName="celular"
+          placeholder="Celular"
+          formControlName="phone"
+          data-testid="celular"
           mask="(00) 0 0000 0000"
           type="tel"
         />
-        <mat-error *ngIf="form.get('email')?.invalid">{{
-          getErrorMessage("celular")
+        <mat-error *ngIf="form.get('phone')?.invalid">{{
+          getErrorMessage("phone")
+        }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          type="date"
+          data-testid="birth"
+          matInput
+          placeholder="Data de nascimento *"
+          formControlName="birth"
+        />
+        <mat-error *ngIf="form.get('birth')?.invalid">{{
+          getErrorMessage("birth")
         }}</mat-error>
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>Sexo</mat-label>
-        <mat-select formControlName="sexo">
+        <mat-select formControlName="gender" data-testid="gender">
           <mat-option value="F">Feminino</mat-option>
           <mat-option value="M">Masculino</mat-option>
+          <mat-option value="O">Outros</mat-option>
         </mat-select>
-        <mat-error *ngIf="form.get('email')?.invalid">{{
-          getErrorMessage("sexo")
+        <mat-error *ngIf="form.get('gender')?.invalid">{{
+          getErrorMessage("gender")
         }}</mat-error>
       </mat-form-field>
     </form>
@@ -54,9 +80,10 @@
   <mat-card-actions>
     <button
       mat-raised-button
-      disabled="{{ !form.valid || this.isSubmitting }}"
+      [disabled]="!form.valid || isSubmitting"
       color="primary"
       type="submit"
+      data-testid="submitButton"
       [ngClass]="this.isSubmitting ? 'loading' : ''"
       (click)="onSubmit()"
     >

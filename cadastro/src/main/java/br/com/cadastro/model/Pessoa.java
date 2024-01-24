@@ -1,7 +1,10 @@
 package br.com.cadastro.model;
 
+import java.time.LocalDate;
+
 import javax.persistence.*;
 
+import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 @Table(name = "tb_pessoa")
 public class Pessoa {
@@ -10,10 +13,10 @@ public class Pessoa {
     private Integer id;
 
     @Column(nullable = false, length = 200)
-    private String nome;
+    private String name;
 
     @Column(nullable = false, length = 1)
-    private String sexo;
+    private String gender;
 
     @Column(nullable = false, length = 11)
     private String cpf;
@@ -22,7 +25,11 @@ public class Pessoa {
     private String email;
 
     @Column(length = 11)
-    private String celular;
+    private String phone;
+
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @Column(name = "birth")
+    private LocalDate birth;
 
     public Integer getId() {
         return id;
@@ -32,20 +39,20 @@ public class Pessoa {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getSexo() {
-        return sexo;
+    public String getGender() {
+        return gender;
     }
 
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public String getCpf() {
@@ -64,11 +71,19 @@ public class Pessoa {
         this.email = email;
     }
 
-    public String getCelular() {
-        return celular;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setCelular(String celular) {
-        this.celular = celular;
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public LocalDate getBirth() {
+        return birth;
+    }
+
+    public void setBirth(LocalDate birth) {
+        this.birth = birth;
     }
 }

@@ -1,0 +1,49 @@
+mat-card {
+  padding: 2rem;
+  border: 1px solid #d6d0cc;
+
+  .emptyTable {
+    width: 100%;
+    text-align: center;
+    padding: 2rem;
+    font-weight: 600;
+    font-size: 1rem;
+    color: black;
+  }
+
+  th {
+    background-color: #304ffe;
+    color: white;
+    font-weight: 700;
+  }
+
+  .tableContainer {
+    overflow-x: auto;
+    height: fit-content;
+    background-color: transparent;
+  }
+
+  table {
+    border: 1px solid #d6d0cc;
+    height: 100%;
+  }
+
+  .frmSearch {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 100%;
+    gap: 1rem;
+    margin-bottom: 1rem;
+
+    .btnSearch {
+      padding: 1.65rem;
+      color: white;
+      font-weight: 600;
+    }
+  }
+
+  .mat-elevation-z8 {
+    max-width: 1280px;
+  }
+}

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { PeopleSearchComponent } from './people-search/people-search.component';
+import { PeopleSearchComponent } from './containers/people-search/people-search.component';
 
 const routes: Routes = [
   {

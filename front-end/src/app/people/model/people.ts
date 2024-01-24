@@ -1,7 +1,9 @@
 export interface IPeopleData {
-  nome: string;
+  id?: number;
+  name: string;
   cpf: string;
-  sexo: string;
+  gender: string;
   email: string;
-  celular: string;
+  phone: string;
+  birth: string;
 }
